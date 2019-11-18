@@ -1,0 +1,32 @@
+.divider {
+    background: rgb(255, 0, 0);  
+    width: 940px;
+    
+    margin: auto;
+    display: block;
+}
+
+ .card {
+    color: black;
+    background: rgb(102, 218, 238);  
+  } 
+
+h2,h3, h5, h4 {
+    text-align: center;
+   
+}
+form {
+    text-align: center;
+  }
+
+h4:hover{
+    color: rgb(93, 228, 244);
+    text-align: center;
+}
+h6 {
+    width: 30%;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+    display: inline;
+}
