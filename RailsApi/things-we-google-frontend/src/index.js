@@ -3,15 +3,16 @@ const SEARCHES_URL = `${BASE_URL}/searches`
 const USERS_URL = `${BASE_URL}/users`
 const FAVORITES_URL = `${BASE_URL}/favorites`
 const searchesCollection = document.querySelector('#searches-collection')
+const formContainer = document.querySelector('#search-form')
 const favCollection = document.querySelector('#fav-collection')
 const likeButton = document.querySelector('.like-btn')
 const signupForm = document.querySelector('#signup-form')
+const searchForm = document.querySelector('#search-form')
 const signupInputs = document.querySelectorAll(".signup-input")
-const header = document.querySelector('.header-banner')
-const logout = document.querySelector('.logout')
-const date = Date().slice(16, 21);
-
+const formInputs = document.querySelectorAll(".form-input")
+// const header = document.querySelector('.header-banner')
 let currentUser
+searchForm.style.display = 'none'
 
 class Search {
     constructor(searchAttributes) {
@@ -21,23 +22,16 @@ class Search {
     }
 
     render() {
-        // return `<div class="card text-white bg-info mb-3">
-        //         <h5 class="card-title">${this.content}<h5>
-        //           <p data-search-id=${this.id} class="like-btn">♡</p>
-        //         </div>`
-
-
-
-
         return ` <div class="card">
         <div class="card bg-light">
           <div class="card-body text-center">
-            <h4 class="card-text">${this.content}</h5>
+            <h4 class="card-text">${this.content}</h4>
             <h6 data-search-id=${this.id} class="like-btn">♡</h6> 
             <a href="${this.link}"> ----> </a>
           </div>
         </div>`
     }
+
 }
 
 signupForm.addEventListener('submit', function (e) {
@@ -76,9 +70,10 @@ function putSearchesOnDom(searchArray) {
     })
 }
 
+
 function putFavoritesOnDom(favArray) {
     favCollection.innerHTML = `<h2>My Favorites</h2>
-                               <h3 class="back-link">←Back to Gifts</h3>`
+                               <h3 class="back-link">←Back to List</h3>`
     favArray.forEach(favorite => {
         favCollection.innerHTML +=
             // `<div class="card">
@@ -88,7 +83,7 @@ function putFavoritesOnDom(favArray) {
             ` <div class="card">
         <div class="card bg-primary">
           <div class="card-body text-center">
-            <h4 class="card-text">${favorite.search.content}</h5>
+            <h3 class="card-text">${favorite.search.content}</h>
             <h6 data-search-id=${favorite.search.id} class="like-btn"></h6> 
           </div>
         </div>`
@@ -122,11 +117,30 @@ favCollection.addEventListener('click', function (e) {
     }
 })
 
+searchForm.addEventListener('submit', function (e) {
+    e.preventDefault()
+    console.log(e.target)
+    console.log(SEARCHES_URL)
+    fetch(SEARCHES_URL, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+        },
+        body: JSON.stringify({
+            content: formInputs[0].value,
+        })
+    })
+        .then(res => res.json())
+    fetchSearches()
+})
+
 function loggedInUser(object) {
     currentUser = object
     signupForm.style.display = 'none'
     welcome.innerHTML = `<h4>Hello, <i>${currentUser.email}</i></h4>
                             <h5> Here is a very real list of "things" that have been googled </h5>`
+    searchForm.style.display = ''
     fetchSearches()
 }
 
@@ -157,3 +171,4 @@ searchesCollection.addEventListener('click', function (e) {
         })
     }
 })
+

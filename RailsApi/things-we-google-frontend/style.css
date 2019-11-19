@@ -1,7 +1,6 @@
 .divider {
-    background: rgb(255, 0, 0);  
+    background: rgba(149, 255, 0, 0.94);  
     width: 940px;
-    
     margin: auto;
     display: block;
 }
@@ -19,10 +18,16 @@ form {
     text-align: center;
   }
 
-h4:hover{
+  .search-form {
+    background-color: red;
+  }
+
+.favorites-link:hover{
     color: rgb(93, 228, 244);
     text-align: center;
 }
+
+
 h6 {
     width: 30%;
     height: 60px;
