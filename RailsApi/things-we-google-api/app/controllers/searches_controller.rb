@@ -15,7 +15,6 @@ class SearchesController < ApplicationController
 
     def create
         search = Search.new(search_params)
-        # current_user.favorite.build(favorite_params)
         if search.save
             render json: search, except: [:created_at, :updated_at]
         else
