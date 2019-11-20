@@ -1,6 +1,6 @@
 .divider {
-    background: rgba(149, 255, 0, 0.94);  
-    width: 940px;
+    background: rgba(255, 0, 225, 0.201);  
+    width: 350px;
     margin: auto;
     display: block;
 }
@@ -12,7 +12,7 @@
 
 h2,h3, h5, h4 {
     text-align: center;
-   
+    font-family: 'Baloo';font-size: 20px;
 }
 form {
     text-align: center;
@@ -23,14 +23,12 @@ form {
   }
 
 .favorites-link:hover{
-    color: rgb(93, 228, 244);
+    color: rgba(255, 0, 225, 0.201);  
     text-align: center;
 }
 
 
-h6 {
-    width: 30%;
-    height: 60px;
+h6 { 
     margin: 0;
     padding: 0;
     display: inline;
